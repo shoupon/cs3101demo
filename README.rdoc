@@ -1,12 +1,26 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+HW1 -- sl3357 -- Shou-pon Lin
 
-Things you may want to cover:
+Tentative project outline:
+
+The web application (name TBD) tailored for travel experience
+
+During travel there may be photos, videos, or notes taken along the way. I wish these materials could somehow be managed, not by the online photo service such as Picasa or Flickr. It should be more like a personal blog augmented by GoogleMap, and one can use it for reconstrusting the travel experience. 
+
+The following features should be included:
+- Photo/Video/Note storage
+- The material could be sorted/presented according to the date taken or their locations
+- Several ways to present the materials: on a map, in a list, etc..
+- Reconstruction of itineraries based on the location and date information
+
+Note: 
+The project will subject to change if some features are not appropriate for a web application
+
+== Placeholders
 
 * Ruby version
-
+2.1.0
 * System dependencies
 
 * Configuration
