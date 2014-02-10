@@ -15,7 +15,7 @@ The following features should be included:
 - Reconstruction of itineraries based on the location and date information
 
 Note: 
-The project will subject to change if some features are not appropriate for a web application
+The project may subject to change if some features are not appropriate for a web application
 
 == Placeholders
 
