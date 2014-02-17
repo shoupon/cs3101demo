@@ -1,0 +1,15 @@
+<%= form_for :session, :url => sessions_path, :method => :post do |f| %>
+
+    <%= f.label "Email address" %>
+    <%= f.text_field :email %>
+
+    <div class="actions">
+        <br/>
+        <%= f.submit "Log in" %>
+    </div>
+    <p id="notice"><%= notice %></p>
+
+    No account yet?<br>
+    <%= link_to 'Sign up', signup_path %>
+
+<% end %>

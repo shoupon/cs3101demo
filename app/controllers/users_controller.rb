@@ -24,14 +24,22 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new
+    u = User.find_by(email: params[:user][:email].downcase)
+    # password needed to be hashed and salted before being stored into the database
+    # TODO
+    if not u
+      @user = User.new(name: params[:user][:name], email: params[:user][:email].downcase)
+      session[:user_id] = @user.id
+    end    
 
     respond_to do |format|
-      if @user.save
+      if session[:user_id]
+        @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to signup_path, notice: 'Account already exists.' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -41,7 +49,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(name: params[:user][:name], email: params[:user][:email].downcase)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
