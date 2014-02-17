@@ -43,4 +43,4 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # Use MongoDB
-gem 'mongoid'
+gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'
