@@ -10,5 +10,9 @@
 
 <%= yield %>
 
+<br>
+ 
+<%= "Logged in as " + current_user.email if current_user and current_user.email %><br>
+
 </body>
 </html>
