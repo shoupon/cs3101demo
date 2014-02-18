@@ -5,10 +5,12 @@ class SessionsController < ApplicationController
     end
 
     def create
-        user = User.find_by(email: params[:session][:email].downcase)
-        if user
-            session[:user_id] = user.id
+        @user = User.find_by(email: params[:session][:email].downcase)
+        if @user && BCrypt::Password.new(@user.password) == params[:session][:password]
+            session[:user_id] = @user.id
             redirect_to users_url
+        elsif @user
+            redirect_to new_session_url, notice: 'Password incorrect.'
         else
             redirect_to new_session_url, notice: 'Account does not exist.'
         end

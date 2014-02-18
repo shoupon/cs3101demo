@@ -1,7 +1,12 @@
+<h1>Login</h1>
+
 <%= form_for :session, :url => sessions_path, :method => :post do |f| %>
 
-    <%= f.label "Email address" %>
-    <%= f.text_field :email %>
+    <%= f.label "Email address" %><br>
+    <%= f.text_field :email %><br>
+
+    <%= f.label "Password" %><br>
+    <%= f.text_field :password %><br>
 
     <div class="actions">
         <br/>

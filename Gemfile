@@ -44,3 +44,6 @@ end
 
 # Use MongoDB
 gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'
+
+# Use bcrypt to hashed to password
+gem 'bcrypt-ruby', '3.1.2'

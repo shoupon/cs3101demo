@@ -26,11 +26,20 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new
-    u = User.find_by(email: params[:user][:email].downcase)
+    
     # password needed to be hashed and salted before being stored into the database
-    # TODO
+    if params[:user][:password_input].to_s[' ']
+      redirect_to signup_path, notice: 'Password contains blank(s)' 
+      return
+    elsif params[:user][:password_input] != params[:user][:password_confirm]
+      redirect_to signup_path, notice: 'Retyped password does not match' 
+      return
+    end
+
+    u = User.find_by(email: params[:user][:email].downcase)
     if not u
       @user = User.new(name: params[:user][:name], email: params[:user][:email].downcase)
+      @user.password = BCrypt::Password.create(params[:user][:password_input])
       session[:user_id] = @user.id
     end    
 

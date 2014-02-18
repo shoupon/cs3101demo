@@ -14,9 +14,6 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
 
     def require_user
-        puts "Current_user (in require_user): "
-        puts current_user[:email] if current_user
-        puts "marker"
         if current_user
             return true
         end
