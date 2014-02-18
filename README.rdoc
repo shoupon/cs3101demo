@@ -1,5 +1,9 @@
 == README
 
+HW2 -- sl3357 -- Shou-pon Lin
+
+The web application now includes authentication mechanism. User new to the application may create account with password. The user may login with an account previously created in the database and with correct password. After logged in, a list of created login will be presented with password hashed and salted.
+
 HW1 -- sl3357 -- Shou-pon Lin
 
 Tentative project outline:
