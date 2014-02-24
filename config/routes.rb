@@ -1,4 +1,6 @@
 Demo::Application.routes.draw do
+  resources :trips
+
   resources :users
   resources :sessions, :only => [:create, :destroy, :new]
 

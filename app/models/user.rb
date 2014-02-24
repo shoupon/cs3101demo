@@ -5,6 +5,8 @@ class User
   # users.password_hash in the database is a :string
   include BCrypt
 
+  has_many :trips
+
   field :name, type: String
   field :email, type: String
   field :password, type: String
