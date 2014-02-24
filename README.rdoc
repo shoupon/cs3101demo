@@ -1,5 +1,28 @@
 == README
 
+HW3 -- sl3357 -- Shou-pon Lin
+
+The purpose of this application is for each user to keep track of all the trips they have been to. Each trip contains several cities in an itinerary, and several attractions may be visited during a user's stay in a city.
+
+The following models are created in this homework:
+- User: corresponds to each user that uses this application; stores user information and provide authentication
+- Trip: a trip describes the itinerary of a User for a certain period; it includes a start date, an end date, and the Cities that have been traveled during this period 
+- City: corresponds to real cities in the world. A city has a unique Location and may have several Attractions
+- Country: corresponds to real countries in the world. A country has several Cities
+- Location: contains the coordinate of a specific point on the earth surface
+- Address: inherits Location and contains additional fields such as street name, city name, zipcode, etc
+- Attraction: is a point-of-interest within a City. It has Location or Address associated with it
+
+A summary of associations:
+- users <-> trips (many-to-many)
+- trip <-> cities (one-to-many)
+- country <-> cities (one-to-many)
+- city <-> location (one-to-one, embedded)
+- city <-> attractions (one-to-many)
+- attraction <-> location/address (one-to-one, embedded)
+
+There is one polymorphic association employed in this app. A Location can be embedded in City or Attraction, which are defined as :place.
+
 HW2 -- sl3357 -- Shou-pon Lin
 
 The web application now includes authentication mechanism. User new to the application may create account with password. The user may login with an account previously created in the database and with correct password. After logged in, a list of created login will be presented with password hashed and salted.
