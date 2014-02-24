@@ -1,4 +1,8 @@
 Demo::Application.routes.draw do
+  resources :addresses
+
+  resources :attractions
+
   resources :cities
 
   resources :countries
