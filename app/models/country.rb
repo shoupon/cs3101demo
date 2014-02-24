@@ -1,8 +1,7 @@
-class City
+class Country
   include Mongoid::Document
 
-  belongs_to :country
-  embeds_one :location
+  has_many :cities
 
   field :name, type: String
 end
