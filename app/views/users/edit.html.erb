@@ -1,6 +1,27 @@
 <h1>Editing user</h1>
 
-<%= render 'form' %>
+<%= form_for :user, :url => user_path, :method => :put do |f| %>
+
+    <%= f.label "Name" %><br>
+    <%= f.text_field :name %><br>
+
+    <%= f.label "Email address" %><br>
+    <%= f.text_field :email %><br>
+
+    <%= f.label "Password" %><br>
+    <%= f.text_field :password_input %><br>
+
+    <%= f.label "Retype Password" %><br>
+    <%= f.text_field :password_confirm %><br>
+
+    <div class="actions">
+        <br/>
+        <%= f.submit "Confirm changes" %>
+    </div>
+
+    <p id="notice"><%= notice %></p>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>
+
+<% end %>

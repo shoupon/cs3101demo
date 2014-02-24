@@ -58,8 +58,16 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    if params[:user][:password_input].to_s[' ']
+      redirect_to signup_path, notice: 'Password contains blank(s)' 
+      return
+    elsif params[:user][:password_input] != params[:user][:password_confirm]
+      redirect_to signup_path, notice: 'Retyped password does not match' 
+      return
+    end
+
     respond_to do |format|
-      if @user.update(name: params[:user][:name], email: params[:user][:email].downcase)
+      if @user.update(name: params[:user][:name], email: params[:user][:email].downcase, password: BCrypt::Password.create(params[:user][:password_input]))
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
