@@ -1,5 +1,9 @@
 == README
 
+HW4 -- sl3357 -- Shou-pon Lin
+
+Type 'rake nyimport:parking_violations' to parse the csv file and save the data into MongoDB database. A smaller 'parking_violations_small.csv' is supplied instead of the original file, because the size of the original file is too large.
+
 HW3 -- sl3357 -- Shou-pon Lin
 
 The purpose of this application is for each user to keep track of all the trips they have been to. Each trip contains several cities in an itinerary, and several attractions may be visited during a user's stay in a city.
