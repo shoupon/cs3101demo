@@ -25,34 +25,25 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new
-    
-    # password needed to be hashed and salted before being stored into the database
-    if params[:user][:password_input].to_s[' ']
-      redirect_to signup_path, notice: 'Password contains blank(s)' 
-      return
-    elsif params[:user][:password_input] != params[:user][:password_confirm]
-      redirect_to signup_path, notice: 'Retyped password does not match' 
-      return
-    end
-
-    u = User.find_by(email: params[:user][:email].downcase)
-    if not u
-      @user = User.new(name: params[:user][:name], email: params[:user][:email].downcase)
-      @user.password = BCrypt::Password.create(params[:user][:password_input])
-      session[:user_id] = @user.id
-    end    
+    @user = User.new(name: params[:user][:name], email: params[:user][:email].downcase)
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+    #@user.password = BCrypt::Password.create(params[:user][:password])
+    session[:user_id] = @user.id
 
     respond_to do |format|
-      if session[:user_id]
-        @user.save
+      if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
-        format.html { redirect_to signup_path, notice: 'Account already exists.' }
+        msg = @user.errors.messages.keys()[0].to_s + ' '
+        msg += @user.errors.messages[@user.errors.messages.keys()[0]][0]
+        format.html { redirect_to signup_path, notice: msg }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+        # 'Account already exists.'
       end
     end
+
   end
 
   # PATCH/PUT /users/1

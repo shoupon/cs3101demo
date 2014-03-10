@@ -7,14 +7,16 @@
     <%= f.label "Name" %><br>
     <%= f.text_field :name %><br>
 
-    <%= f.label "Email address" %><br>
+    <%= f.label "Email address" %> <FONT COLOR="FF0000">*</FONT> <br>
     <%= f.text_field :email %><br>
 
-    <%= f.label "Password" %><br>
-    <%= f.text_field :password_input %><br>
+    <%= f.label "Password" %> <FONT COLOR="FF0000">*</FONT> <br>
+    <%= f.text_field :password %><br>
 
-    <%= f.label "Retype Password" %><br>
-    <%= f.text_field :password_confirm %><br>
+    <%= f.label "Retype Password" %> <FONT COLOR="FF0000">*</FONT> <br>
+    <%= f.text_field :password_confirmation %><br>
+
+<br><FONT COLOR="FF0000">* required fields</FONT> </br>
 
     <div class="actions">
         <br/>
