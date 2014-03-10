@@ -1,5 +1,11 @@
 == README
 
+HW5 -- sl3357 -- Shou-pon Lin
+
+The controller used to be responsible for the check on the uniqueness of :email and several checks on :password and :password_confirmation, which are now implemented in the form of validations in User model. Encryption of password is invoked by callback method before the model is saved to the database.
+
+Two minimalist partials are added. The first shows the links to login/signup/logout pages, whichever are appropriated given whether there is a user currently logged in. The second is a footer at the bottom, with information related to current user and a link to the user's profile page.
+
 HW4 -- sl3357 -- Shou-pon Lin
 
 Type 'rake nyimport:parking_violations' to parse the csv file and save the data into MongoDB database. A smaller 'parking_violations_small.csv' is supplied instead of the original file, because the size of the original file is too large.
