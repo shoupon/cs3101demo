@@ -10,5 +10,11 @@
   <%= @trip.end %>
 </p>
 
+<% @photos.each do |p| %>
+  <%= puts p %>
+  <%= image_tag p.image.url.to_s, :size => "150x150" %>
+  
+<% end %>
+
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>

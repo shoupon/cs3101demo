@@ -52,3 +52,5 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
+
+gem 'mini_magick'

@@ -27,13 +27,25 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     #@trip = Trip.new(trip_params)
-    trip = Trip.new
+    @trip = Trip.new
+    @photo = Photo.new
+    @photo.image = params[:photo]
+    puts @photo.image.url
+    #@photo.image = File.open(params[:photo])
+    @photo.save
+    @trip.photos << @photo
+    puts "debug"
+    puts @trip.photos
+    puts @photo
 
     respond_to do |format|
       if @trip.save
-        params[:photos]['image'].each do |a|
-          @photos = @trip.photos.create!(:image => a, :trip_id => @trip.id)
-        end
+        #params[:photos]['image'].each do |a|
+        #  @photos = @trip.photos.create!(:image => a, :trip_id => @trip.id)
+        #end
+        
+        @trip.save!
+        #@trip.photos.create!(:image => params[:photo], :trip_id => @trip.id)
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
         #format.json { render action: 'show', status: :created, location: @trip }
       else
@@ -75,6 +87,6 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:start, :end)
+      params.require(:trip).permit(:start, :end, :photo => [:image])
     end
 end
