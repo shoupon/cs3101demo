@@ -47,3 +47,8 @@ gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'
 
 # Use bcrypt to hashed to password
 gem 'bcrypt-ruby', '3.1.2'
+
+# Use CarrierWave for photo uploads
+gem 'carrierwave'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'

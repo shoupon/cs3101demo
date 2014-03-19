@@ -19,6 +19,13 @@
     <%= f.label :end %><br>
     <%= f.date_select :end %>
   </div>
+
+  <% if params[:controller] == "post" && params[:action] == "edit" %> 
+    <% @post.photos.each do |p| %>
+      <%= image_tag p.image, :size => "150x150" %>
+    <% end %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

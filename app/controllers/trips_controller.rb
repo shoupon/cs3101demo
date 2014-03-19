@@ -10,11 +10,13 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+    @photos = @trip.photos.all
   end
 
   # GET /trips/new
   def new
     @trip = Trip.new
+    @photos = @trip.photos.build
   end
 
   # GET /trips/1/edit
@@ -24,12 +26,16 @@ class TripsController < ApplicationController
   # POST /trips
   # POST /trips.json
   def create
-    @trip = Trip.new(trip_params)
+    #@trip = Trip.new(trip_params)
+    trip = Trip.new
 
     respond_to do |format|
       if @trip.save
+        params[:photos]['image'].each do |a|
+          @photos = @trip.photos.create!(:image => a, :trip_id => @trip.id)
+        end
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @trip }
+        #format.json { render action: 'show', status: :created, location: @trip }
       else
         format.html { render action: 'new' }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
