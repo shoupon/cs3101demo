@@ -13,6 +13,8 @@ class User
   field :password, type: String
   field :password_comfirmation, type: String
 
+  mount_uploader :avatar, AvatarUploader
+
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_presence_of :password

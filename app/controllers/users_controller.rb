@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     @user = User.new(name: params[:user][:name], email: params[:user][:email].downcase)
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
+    @user.avatar = params[:user][:avatar].tempfile
     #@user.password = BCrypt::Password.create(params[:user][:password])
     session[:user_id] = @user.id
 
@@ -86,6 +87,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :avatar)
     end
 end
