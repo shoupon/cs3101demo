@@ -50,4 +50,5 @@ gem 'bcrypt-ruby', '3.1.2'
 
 gem 'carrierwave', :git => "git://github.com/jnicklas/carrierwave.git"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
+#gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
+gem 'mini_magick', '3.6.0'

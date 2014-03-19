@@ -28,8 +28,7 @@ class UsersController < ApplicationController
     @user = User.new(name: params[:user][:name], email: params[:user][:email].downcase)
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
-    @user.avatar = params[:user][:avatar].tempfile
-    #@user.password = BCrypt::Password.create(params[:user][:password])
+    @user.avatar = params[:user][:avatar]
     session[:user_id] = @user.id
 
     respond_to do |format|

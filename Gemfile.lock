@@ -9,13 +9,6 @@ GIT
       mime-types (>= 1.16)
 
 GIT
-  remote: git://github.com/probablycorey/mini_magick.git
-  revision: f309fbf390cd21a845264bca9bec95b9bdae8029
-  specs:
-    mini_magick (3.4)
-      subexec (~> 0.2.1)
-
-GIT
   remote: https://github.com/mongoid/mongoid.git
   revision: 5b0f031992cbec66d68c6cb288a4edb952ed5336
   specs:
@@ -84,6 +77,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_magick (3.6.0)
+      subexec (~> 0.2.1)
     minitest (4.7.5)
     mongoid-grid_fs (1.9.2)
       mime-types (>= 1.19, < 3.0)
@@ -157,7 +152,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
-  mini_magick!
+  mini_magick (= 3.6.0)
   mongoid!
   rails (= 4.0.2)
   sass-rails (~> 4.0.0)

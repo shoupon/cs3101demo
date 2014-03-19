@@ -1,5 +1,13 @@
 == README
 
+Requirements
+| Name     | notes    |    
+|----------|----------|
+|Rails ||
+|MongoDB w/ Mongoid | |
+|CarrierWave| For file uploading|
+|ImageMagick| For image manipulation, should be installed on the server|
+
 HW5 -- sl3357 -- Shou-pon Lin
 
 The controller used to be responsible for the check on the uniqueness of :email and several checks on :password and :password_confirmation, which are now implemented in the form of validations in User model. Encryption of password is invoked by callback method before the model is saved to the database.
