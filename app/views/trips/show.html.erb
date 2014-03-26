@@ -10,9 +10,14 @@
   <%= @trip.end %>
 </p>
 
+<% size = :medium %>
+<% count = 0 %>
 <% @photos.each do |p| %>
-  <%= puts p %>
-  <%= image_tag p.image.url.to_s, :size => "150x150" %>
+  <%= image_tag p.image_url(size) %>
+  <% count += 1 %>
+  <% if count % 5 == 0 %>
+    <br>
+  <% end %>
   
 <% end %>
 

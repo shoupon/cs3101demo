@@ -28,16 +28,13 @@ class TripsController < ApplicationController
   def create
     #@trip = Trip.new(trip_params)
     @trip = Trip.new
-    @photo = Photo.new
-    @photo.image = params[:photo]
-    puts @photo.image.url
-    #@photo.image = File.open(params[:photo])
-    @photo.save
-    @trip.photos << @photo
-    puts "debug"
-    puts @trip.photos
-    puts @photo
-
+    params[:trip][:photos].each do |f|
+      p = Photo.new
+      p.image = f[:file]
+      p.save
+      @trip.photos << p 
+    end
+    
     respond_to do |format|
       if @trip.save
         #params[:photos]['image'].each do |a|
