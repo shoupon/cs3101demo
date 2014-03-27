@@ -58,6 +58,9 @@ development:
 production:
   sessions:
     default:
+      #database: demo_prod
+      #hosts:
+      #  - localhost:27017
       uri: <%= ENV['MONGOHQ_URL'] %>
   options:
     raise_not_found_error: false
