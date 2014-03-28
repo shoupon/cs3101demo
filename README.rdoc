@@ -85,3 +85,7 @@ The project may subject to change if some features are not appropriate for a web
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+---
+
+Naming idea: {traveLOG}[http://www.merriam-webster.com/dictionary/travelogue] (ps. it might be taken though...)
