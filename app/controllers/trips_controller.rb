@@ -31,22 +31,18 @@ class TripsController < ApplicationController
     params[:trip][:photos].each do |f|
       p = Photo.new
       p.image = f[:file]
-      p.save
+      p.save!
       @trip.photos << p 
     end
     
     respond_to do |format|
-      if @trip.save
-        #params[:photos]['image'].each do |a|
-        #  @photos = @trip.photos.create!(:image => a, :trip_id => @trip.id)
-        #end
-        
-        @trip.save!
-        #@trip.photos.create!(:image => params[:photo], :trip_id => @trip.id)
+      if @trip.save!
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        #format.json { render action: 'show', status: :created, location: @trip }
+        format.json { render action: 'show', status: :created, location: @trip }
       else
-        format.html { render action: 'new' }
+        msg = @trip.errors.messages.keys()[0].to_s + ' '
+        msg += @trip.errors.messages[@trip.errors.messages.keys()[0]][0]
+        format.html { render action: 'new', notice: msg }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
     end

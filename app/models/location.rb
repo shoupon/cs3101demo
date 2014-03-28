@@ -3,5 +3,6 @@ class Location
 
   embedded_in :place, polymorphic: true
   
-  field :coordinate, type: String
+  field :latitude, type: String
+  field :longitude, type: String
 end
