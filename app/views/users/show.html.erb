@@ -16,8 +16,10 @@
 </p>
 
 <!-- full size image -->
+<%= image_tag @user.avatar_url %>
 
 <!-- thumbnail image -->
+<%= image_tag @user.avatar_url(:thumb) %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
