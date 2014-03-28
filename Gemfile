@@ -59,3 +59,5 @@ gem 'rmagick', :require => 'RMagick'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+
+gem 'geocoder'

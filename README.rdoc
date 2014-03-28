@@ -3,10 +3,11 @@
 Requirements
 | Name     | notes    |    
 |----------|----------|
-|Rails ||
-|MongoDB w/ Mongoid | |
-|CarrierWave| For file uploading|
-|ImageMagick| For image manipulation, should be installed on the server|
+*Rails 
+*MongoDB w/ Mongoid | |
+*CarrierWave| For file uploading|
+*ImageMagick| For image manipulation, should be installed on the server|
+*Geocoder
 
 HW5 -- sl3357 -- Shou-pon Lin
 

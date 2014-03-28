@@ -8,4 +8,27 @@ class Trip
   
   field :start, type: Date
   field :end, type: Date
+
+  before_validation :find_cities
+  def find_cities
+    photos.each do |p|
+      if geo = Geocoder.search("#{p.location.latitude},#{p.location.longitude}").first
+        c = City.find_by(name: geo.city)
+        unless c.nil?
+          c.photos << p
+          unless cities.include? c 
+            cities << c
+          end
+          c.save!
+        else
+          c = City.new(name: geo.city)
+          citycoord = Geocoder.coordinates(geo.city)
+          c.location = Location.new(latitude: citycoord[0], longitude: citycoord[1])
+          c.photos << p
+          c.save!
+          cities << c
+        end
+      end
+    end
+  end
 end

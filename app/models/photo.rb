@@ -5,9 +5,12 @@ class Photo
   mount_uploader :image, ImageUploader
   
   belongs_to :trip
+  belongs_to :city
   embeds_one :location, as: :place
   field :latitude, type: String
   field :longitude, type: String
+  field :description, type: String
+  field :date, type: Date
 
   before_validation :extract_geolocation
  

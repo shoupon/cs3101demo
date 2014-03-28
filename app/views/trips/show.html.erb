@@ -13,9 +13,8 @@
 <% size = :medium %>
 <% count = 0 %>
 <% @photos.each do |p| %>
-  <% puts 'xxx' %>
+  <% puts 'location of this photo' %>
   <% puts p.location %>
-  <% puts 'xxx' %>
   <%= image_tag p.image_url(size) %>
   <% count += 1 %>
   <% if count % 5 == 0 %>
