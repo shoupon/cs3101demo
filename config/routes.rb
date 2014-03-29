@@ -7,8 +7,6 @@ Demo::Application.routes.draw do
 
   resources :countries
 
-  resources :locations
-
   resources :trips
 
   resources :users
@@ -18,6 +16,8 @@ Demo::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
   get "/images/*path" => "gridfs#serve"
+
+  get ":id" => "users#showname"
 
   #get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.

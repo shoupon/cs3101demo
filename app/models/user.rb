@@ -12,6 +12,7 @@ class User
   field :email, type: String
   field :password, type: String
   field :password_comfirmation, type: String
+  field :nickname, type: String
 
   mount_uploader :avatar, AvatarUploader
 

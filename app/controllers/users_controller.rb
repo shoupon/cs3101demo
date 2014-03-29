@@ -13,6 +13,15 @@ class UsersController < ApplicationController
   def show
   end
 
+  def showname
+    @user = User.find_by(:nickname => params[:id])
+    unless @user.nil?
+      render :show
+    else
+      # 404 page, nickname not found
+    end
+  end
+
   # GET /users/new
   def new
     @user = User.new
@@ -28,6 +37,7 @@ class UsersController < ApplicationController
     @user = User.new(name: params[:user][:name], email: params[:user][:email].downcase)
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
+    @user.nickname = params[:user][:nickname]
     @user.avatar = params[:user][:avatar]
     session[:user_id] = @user.id
 
