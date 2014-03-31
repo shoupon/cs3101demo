@@ -4,21 +4,21 @@
 </div>
 <table class="table table-striped">
   <thead>
-    <tr>
+     <tr>
+      <th></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:password) %></th>
-      <th><%= model_class.human_attribute_name(:avatar) %></th>
+      <th><%= model_class.human_attribute_name(:role) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= image_tag user.avatar_url(:thumb) %></td>
         <td><%= link_to user.name, user_path(user) %></td>
         <td><%= user.email %></td>
-        <td><%= user.password %></td>
-        <td><%= image_tag user.avatar_url(:thumb) %></td>
+        <td><%= user.role %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_user_path(user), :class => 'btn btn-mini' %>
@@ -34,6 +34,3 @@
 </table>
 
 <p id="notice"><%= notice %></p>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_user_path,
-            :class => 'btn btn-primary' %>
