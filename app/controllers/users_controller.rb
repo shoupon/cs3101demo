@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_user, only: [:new, :create]
+  before_action :allow_edit, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -97,5 +98,21 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :avatar)
+    end
+
+    # Allow user to edit their own information, except being :admin
+    def allow_edit
+       u = User.find(session[:user_id])
+       if u.role == :admin
+          return true
+       else
+          if u.id == @user.id
+             return true
+          else
+             respond_to do |format|
+                format.html { redirect_to users_path, notice: 'You are not authorized to perform the action' }
+             end
+          end
+       end
     end
 end

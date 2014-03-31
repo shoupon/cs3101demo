@@ -13,6 +13,8 @@ class User
   field :password, type: String
   field :password_comfirmation, type: String
   field :nickname, type: String
+  field :role, type: Symbol, default: :traveler 
+  # :traveler: typical user, :admin: administrator
 
   mount_uploader :avatar, AvatarUploader
 
