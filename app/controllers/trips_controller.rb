@@ -11,6 +11,7 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+    @user = User.find(params[:user_id])
     @photos = @trip.photos.all
   end
 
@@ -23,6 +24,7 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
+    @user = User.find(params[:user_id])
   end
 
   # POST /trips
@@ -30,17 +32,23 @@ class TripsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @trip = Trip.new
+    @trip.start = params[:trip][:start]
+    @trip.end = params[:trip][:end]
+    count = 0
     params[:trip][:photos].each do |f|
-      p = Photo.new
-      p.image = f[:file]
-      p.save!
-      @trip.photos << p 
+      if count < 10
+        p = Photo.new
+        p.image = f[:file]
+        p.save!
+        @trip.photos << p 
+        count += 1
+      end
     end
     @trip.user = @user
     
     respond_to do |format|
       if @trip.save!
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        format.html { redirect_to [@user,@trip], notice: 'Trip was successfully created.' }
         format.json { render action: 'show', status: :created, location: @trip }
       else
         msg = @trip.errors.messages.keys()[0].to_s + ' '
@@ -54,9 +62,10 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1
   # PATCH/PUT /trips/1.json
   def update
+    @user = User.find(params[:user_id])
     respond_to do |format|
       if @trip.update(trip_params)
-        format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
+        format.html { redirect_to [@user,@trip], notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -68,9 +77,10 @@ class TripsController < ApplicationController
   # DELETE /trips/1
   # DELETE /trips/1.json
   def destroy
+    @user = User.find(params[:user_id])
     @trip.destroy
     respond_to do |format|
-      format.html { redirect_to trips_url }
+      format.html { redirect_to user_trips_url(@user) }
       format.json { head :no_content }
     end
   end
