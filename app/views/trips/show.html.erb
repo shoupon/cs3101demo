@@ -12,16 +12,20 @@
 
 <% size = :medium %>
 <% count = 0 %>
+<div class="row-fluid">
 <% @photos.each do |p| %>
-  <% puts 'location of this photo' %>
-  <% puts p.location %>
-  <%= image_tag p.image_url(size) %>
+  <%= render p %>
   <% count += 1 %>
-  <% if count % 5 == 0 %>
-    <br>
+  <% if count % 6 == 0 %>
+    </div>
+    <div class="row-fluid">
   <% end %>
-  
 <% end %>
+</div>
 
-<%= link_to 'Edit', edit_user_trip_path(@user,@trip) %> |
-<%= link_to 'Back', user_trips_path(@user) %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+            edit_user_trip_path(@user,@trip), :class => 'btn btn-mini' %>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+                      user_trips_path(@user), :class => 'btn btn-mini' %>
+

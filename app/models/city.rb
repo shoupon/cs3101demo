@@ -14,14 +14,13 @@ class City
 
   before_create :find_country
   def find_country
-    result = Geocoder.search("#{location.latitude},#{location.longitude}").first
-    country_name = result.country
+    country_name = Geocoder.search("#{location.latitude},#{location.longitude}").first.country
     c = Country.find_by(:name => country_name)
     unless c.nil?
-      country = c
+      self.country = c
     else
-      country = Country.new(:name => country_name)
-      country.save
+      self.country = Country.new(:name => country_name)
+      self.country.save
     end
   end
 end

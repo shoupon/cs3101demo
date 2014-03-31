@@ -1,0 +1,10 @@
+<div class="span2">
+  <p>
+    <% size = :medium %>
+    <%= image_tag photo.image_url(size) %>
+  </p>
+  <p><%= photo.city.name + ', ' + photo.city.country.name %></p>
+  <%= link_to t('.edit', :default => t("Edit description")),
+            edit_user_trip_path(@user,@trip), :class => 'btn btn-mini' %>
+
+</div>
