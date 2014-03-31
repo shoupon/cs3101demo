@@ -12,7 +12,8 @@ class Trip
   before_validation :find_cities
   def find_cities
     photos.each do |p|
-      if geo = Geocoder.search("#{p.location.latitude},#{p.location.longitude}").first
+      unless p.latitude.nil? || p.longitude.nil?
+        geo = Geocoder.search("#{p.location.latitude},#{p.location.longitude}").first
         c = City.find_by(name: geo.city)
         unless c.nil?
           c.photos << p
