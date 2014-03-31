@@ -1,15 +1,12 @@
 Demo::Application.routes.draw do
   resources :addresses
-
   resources :attractions
-
   resources :cities
-
   resources :countries
 
-  resources :trips
-
-  resources :users
+  resources :users do
+    resources :trips
+  end
   resources :sessions, :only => [:create, :destroy, :new]
 
   get "signup" => "users#new", :as => "signup"

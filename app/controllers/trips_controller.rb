@@ -4,7 +4,8 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    @user = User.find(params[:user_id])
+    @trips = @user.trips
   end
 
   # GET /trips/1
@@ -15,6 +16,7 @@ class TripsController < ApplicationController
 
   # GET /trips/new
   def new
+    @user = User.find(params[:user_id])
     @trip = Trip.new
     @photos = @trip.photos.build
   end
@@ -26,7 +28,7 @@ class TripsController < ApplicationController
   # POST /trips
   # POST /trips.json
   def create
-    #@trip = Trip.new(trip_params)
+    @user = User.find(params[:user_id])
     @trip = Trip.new
     params[:trip][:photos].each do |f|
       p = Photo.new
@@ -34,6 +36,7 @@ class TripsController < ApplicationController
       p.save!
       @trip.photos << p 
     end
+    @trip.user = @user
     
     respond_to do |format|
       if @trip.save!
