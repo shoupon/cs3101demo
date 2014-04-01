@@ -23,9 +23,9 @@
 <% end %>
 </div>
 
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-            edit_user_trip_path(@user,@trip), :class => 'btn btn-mini' %>
+<br>
+<%= link_to t('.upload', :default => "Upload more photos"),
+              upload_user_trip_path(@user,@trip), :class => 'btn btn-mini' %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-                      user_trips_path(@user), :class => 'btn btn-mini' %>
-
+            user_trips_path(@user), :class => 'btn btn-mini' %>

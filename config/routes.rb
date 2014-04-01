@@ -5,7 +5,12 @@ Demo::Application.routes.draw do
   resources :countries
 
   resources :users do
-    resources :trips
+    resources :trips do
+      member do
+        get 'upload'
+        post 'upload' => "trips#upload_action"
+      end
+    end
   end
   resources :sessions, :only => [:create, :destroy, :new]
 

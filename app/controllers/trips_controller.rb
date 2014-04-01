@@ -34,17 +34,8 @@ class TripsController < ApplicationController
     @trip = Trip.new
     @trip.start = params[:trip][:start]
     @trip.end = params[:trip][:end]
-    count = 0
-    params[:trip][:photos].each do |f|
-      if count < 10
-        p = Photo.new
-        p.image = f[:file]
-        p.save!
-        @trip.photos << p 
-        count += 1
-      end
-    end
     @trip.user = @user
+    upload_photos(params[:trip][:photos])
     
     respond_to do |format|
       if @trip.save!
@@ -74,6 +65,31 @@ class TripsController < ApplicationController
     end
   end
 
+  def upload
+    @user = User.find(params[:user_id])
+    @trip = Trip.find(params[:id])
+  end
+  
+  def upload_action
+    @user = User.find(params[:user_id])
+    @trip = Trip.find(params[:id])
+    upload_photos(params[:trip][:photos])
+    
+    respond_to do |format|
+      if @trip.save!
+        format.html { redirect_to [@user,@trip], notice: 'Trip was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @trip }
+      else
+        msg = @trip.errors.messages.keys()[0].to_s + ' '
+        msg += @trip.errors.messages[@trip.errors.messages.keys()[0]][0]
+        format.html { render action: 'new', notice: msg }
+        format.json { render json: @trip.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+
   # DELETE /trips/1
   # DELETE /trips/1.json
   def destroy
@@ -94,5 +110,18 @@ class TripsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
       params.require(:trip).permit(:start, :end, :photo => [:image])
+    end
+
+    def upload_photos(files)
+      count = 0
+      files.each do |f|
+        if count < 10
+          p = Photo.new
+          p.image = f[:file]
+          p.save!
+          @trip.photos << p 
+          count += 1
+        end
+      end
     end
 end
