@@ -10,6 +10,9 @@
       <div class="nav-collapse">
         <ul class="nav">
           <% unless current_user.nil? %>
+            <li><%= image_tag current_user.avatar_url(:thumb) %></li>
+            <li><%= link_to current_user.name, user_path(current_user) %></li>
+            <li><%= link_to 'Dashboard', user_path(current_user) %></li>
             <li><%= link_to 'Log out', logout_path %></li>
           <% else %>  
             <li><%= link_to 'Log in', login_path %></li>
