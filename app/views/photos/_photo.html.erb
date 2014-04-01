@@ -11,7 +11,9 @@
       <% end %>
     <% end %>
   </p>
-  <%= link_to t('.edit', :default => t("Edit description")),
-            edit_user_trip_path(@user,@trip), :class => 'btn btn-mini' %>
+  <% if allow(@user) %>
+    <%= link_to t('.edit', :default => t("Edit description")),
+                edit_user_trip_path(@user,@trip), :class => 'btn btn-mini' %>
+  <% end %>
 
 </div>

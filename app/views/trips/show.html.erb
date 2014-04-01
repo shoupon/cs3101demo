@@ -24,8 +24,10 @@
 </div>
 
 <br>
-<%= link_to t('.upload', :default => "Upload more photos"),
+<% if allow(@user) %>
+  <%= link_to t('.upload', :default => "Upload more photos"),
               upload_user_trip_path(@user,@trip), :class => 'btn btn-mini' %>
+<% end %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
             user_trips_path(@user), :class => 'btn btn-mini' %>

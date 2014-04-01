@@ -71,5 +71,8 @@
 </table>
 
 <p id="notice"><%= notice %></p>
+<% if allow(@user) %>
+  <%= link_to t('.new', :default => t("Add trip")),
+                new_user_trip_path(@user), :class => 'btn btn-mini' %>
+<% end %>
 
-<%= link_to 'New Trip', new_user_trip_path(@user) %>

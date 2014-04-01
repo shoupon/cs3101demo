@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
             return @u
         end
     end
-    helper_method :current_user
+    helper_method :current_user, :allow
 
     def require_user
         if current_user
@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
     end
 
-    # Allow user to edit their own information, except being :admin
-    def allow_edit(owner)
+    # Return true if authorized user
+    def allow(owner)
        u = User.find(session[:user_id])
        if u.role == :admin
           return true
@@ -30,11 +30,17 @@ class ApplicationController < ActionController::Base
           if u.id == owner.id
              return true
           else
-             respond_to do |format|
-                format.html { redirect_to users_path, notice: 'You are not authorized to perform the action' }
-             end
+             return false
           end
        end
+    end
+
+    # Allow user to edit their own information, except being :admin
+    def allow_edit(owner)
+      return true if allow(owner)
+      respond_to do |format|
+        format.html { redirect_to user_path(session[:user_id]), notice: 'You are not authorized to perform the action' }
+      end
     end
 
 end
