@@ -28,3 +28,6 @@
     <% end %>
 </div>
 <p id="notice"><%= notice %></p>
+
+<h5><%= @user.name + "'s trips" %></h5>
+<%= render 'trips/list' %>
