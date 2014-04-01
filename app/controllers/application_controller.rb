@@ -20,4 +20,21 @@ class ApplicationController < ActionController::Base
         end
         redirect_to login_url
     end
+
+    # Allow user to edit their own information, except being :admin
+    def allow_edit(owner)
+       u = User.find(session[:user_id])
+       if u.role == :admin
+          return true
+       else
+          if u.id == owner.id
+             return true
+          else
+             respond_to do |format|
+                format.html { redirect_to users_path, notice: 'You are not authorized to perform the action' }
+             end
+          end
+       end
+    end
+
 end

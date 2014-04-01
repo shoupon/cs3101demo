@@ -1,5 +1,8 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action only: [:new, :edit, :update, :destroy, :create, :upload, :upload_action] do
+    allow_edit(User.find(params[:user_id]))
+  end
 
   # GET /trips
   # GET /trips.json
