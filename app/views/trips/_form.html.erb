@@ -1,4 +1,4 @@
-<%= form_for(@trip) do |f| %>
+<%= form_for([@user,@trip]) do |f| %>
   <% if @trip.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :start %><br>
-    <%= f.date_select :start %>
+    <%= f.date_field :start %>
   </div>
   <div class="field">
     <%= f.label :end %><br>
-    <%= f.date_select :end %>
+    <%= f.date_field :end %>
   </div>
 
   <div class="actions">

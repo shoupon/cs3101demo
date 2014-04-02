@@ -61,8 +61,10 @@ class TripsController < ApplicationController
   # PATCH/PUT /trips/1.json
   def update
     @user = User.find(params[:user_id])
+    @trip.start = params[:trip][:start]
+    @trip.end = params[:trip][:end]
     respond_to do |format|
-      if @trip.update(trip_params)
+      if @trip.update
         format.html { redirect_to [@user,@trip], notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else
@@ -121,13 +123,15 @@ class TripsController < ApplicationController
 
     def upload_photos(files)
       count = 0
-      files.each do |f|
-        if count < 10
-          p = Photo.new
-          p.image = f[:file]
-          p.save!
-          @trip.photos << p 
-          count += 1
+      unless files.nil?
+        files.each do |f|
+          if count < 10
+            p = Photo.new
+            p.image = f[:file]
+            p.save!
+            @trip.photos << p 
+            count += 1
+          end
         end
       end
     end
