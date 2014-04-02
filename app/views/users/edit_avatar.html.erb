@@ -1,0 +1,17 @@
+<h1>Upload avatar</h1>
+
+<%= form_for @user, :html => { :class => 'form-horizontal' }, :url => {:action => "edit_avatar"} do |f| %>
+  <div class="control-group">
+    <%= f.label :avatar, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :avatar, :class => 'file_field' %>
+      <p class="help-block">Supported formats: .jpg, .jpeg, .png, .bmp</p>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit "Upload", :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                users_path, :class => 'btn' %>
+  </div>
+<% end %>
+<%= link_to 'Back', user_path(@user) %>

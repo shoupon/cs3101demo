@@ -16,6 +16,9 @@ Demo::Application.routes.draw do
   resources :trips, :only => [:index]
   resources :photos, :only => [:show]
 
+  get "users/:id/edit_avatar" => "users#edit_avatar", :as => "edit_avatar"
+  patch "users/:id/edit_avatar" => "users#update_avatar"
+  put "users/:id/edit_avatar" => "users#update_avatar"
   get 'users/:id/password' => "users#edit_password", :as => "edit_password"
   patch "users/:id/password" => "users#update_password"
   put "users/:id/password" => "users#update_password"
