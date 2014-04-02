@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @user.trips.each do |trip| %>
+    <% @trips.each do |trip| %>
       <tr>
         <td><%= trip.start %></td>
         <td><%= trip.end %></td>
@@ -43,7 +43,7 @@
           <% count = 0 %>
           <% trip.photos.each do |p| %>
             <% if count < 3 %>
-              <%= image_tag p.image_url(:thumb) %>
+              <%= link_to image_tag(p.image_url(:thumb)), p.image_url %>
               <% count += 1 %>
             <% else %>
               <%= '...' %>
@@ -53,11 +53,11 @@
         </td>
         <td>
           <%= link_to t('.show', :default => t("See more")),
-                      user_trip_path(@user, trip), :class => 'btn btn-mini' %>
+                      user_trip_path(trip.user, trip), :class => 'btn btn-mini' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_trip_path(@user, trip), :class => 'btn btn-mini' %>
+                      edit_user_trip_path(trip.user, trip), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      user_trip_path(@user, trip),
+                      user_trip_path(trip.user, trip),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
@@ -68,7 +68,7 @@
 </table>
 
 <p id="notice"><%= notice %></p>
-<% if allow(@user) %>
+<% if @user && allow(@user) %>
   <%= link_to t('.new', :default => t("Add trip")),
                 new_user_trip_path(@user), :class => 'btn btn-mini' %>
 <% end %>

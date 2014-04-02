@@ -7,8 +7,12 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @user = User.find(params[:user_id])
-    @trips = @user.trips
+    unless params[:user_id].nil?
+      @user = User.find(params[:user_id])
+      @trips = @user.trips
+    else
+      @trips = Trip.all
+    end
   end
 
   # GET /trips/1

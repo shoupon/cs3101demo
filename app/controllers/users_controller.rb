@@ -15,11 +15,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @trips = @user.trips
   end
 
   def showname
     @user = User.find_by(:nickname => params[:id])
     unless @user.nil?
+      show
       render :show
     else
       # 404 page, nickname not found

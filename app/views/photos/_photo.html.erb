@@ -1,7 +1,7 @@
 <div class="span2">
   <p>
     <% size = :medium %>
-    <%= image_tag photo.image_url(size) %> 
+    <%= link_to image_tag(photo.image_url(size)), photo.image_url %> 
   </p>
   <p>
     <% unless photo.city.nil? %>

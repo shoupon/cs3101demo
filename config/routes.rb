@@ -13,6 +13,8 @@ Demo::Application.routes.draw do
     end
   end
   resources :sessions, :only => [:create, :destroy, :new]
+  resources :trips, :only => [:index]
+  resources :photos, :only => [:show]
 
   get "signup" => "users#new", :as => "signup"
   get "login" => "sessions#new", :as => "login"
