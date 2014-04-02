@@ -16,6 +16,10 @@ Demo::Application.routes.draw do
   resources :trips, :only => [:index]
   resources :photos, :only => [:show]
 
+  get 'users/:id/password' => "users#edit_password", :as => "edit_password"
+  patch "users/:id/password" => "users#update_password"
+  put "users/:id/password" => "users#update_password"
+
   get "signup" => "users#new", :as => "signup"
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"

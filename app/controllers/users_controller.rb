@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
   skip_before_action :require_user, only: [:new, :create]
-  before_action only: [:edit, :update, :destroy] do
+  before_action only: [:edit, :update, :destroy, :edit_password, :update_password] do
     allow_edit(User.find(params[:id]))
   end
 
@@ -35,6 +35,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
+
+  # GET/users/1/edit
+  def edit_password
   end
 
   # POST /users
@@ -75,6 +79,31 @@ class UsersController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /users/1
+  # PATCH/PUT /users/1.json
+  def update_password
+    if BCrypt::Password.new(@user.password_hash) == params[:user][:password_old]
+      @user.password_hash = nil
+      @user.password = params[:user][:password]  
+      @user.password_confirmation = params[:user][:password_confirmation]
+    else
+      redirect_to edit_password_path(@user), notice: 'Incorrect old password'
+      return
+    end
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, notice: 'Password is updated successfully.' }
+        format.json { render action: 'show', status: :created, location: @user }
+      else
+        msg = @user.errors.messages.keys()[0].to_s + ' '
+        msg += @user.errors.messages[@user.errors.messages.keys()[0]][0]
+        format.html { redirect_to edit_password_path(@user), notice: msg }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
