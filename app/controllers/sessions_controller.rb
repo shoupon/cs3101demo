@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
     skip_before_action :require_user, only: [:new, :create]
 
     def new
+      if session[:user_id]
+        redirect_to root_url
+      end
     end
 
     def create
@@ -18,6 +21,6 @@ class SessionsController < ApplicationController
 
     def destroy
         session[:user_id] = nil
-        redirect_to root_url
+        redirect_to new_session_url
     end
 end
