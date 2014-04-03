@@ -24,6 +24,7 @@ class UsersController < ApplicationController
       show
       render :show
     else
+      redirect_to root_url
       # 404 page, nickname not found
     end
   end
