@@ -2,9 +2,6 @@ class SessionsController < ApplicationController
     skip_before_action :require_user, only: [:new, :create]
 
     def new
-      if session[:user_id]
-        redirect_to root_url
-      end
     end
 
     def create
