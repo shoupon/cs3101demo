@@ -21,7 +21,7 @@
           <% count = 0 %>
           <% trip.cities.each do |city| %>
             <% if count < 3 %>
-              <%= city.name %><br>
+              <%= city.name unless city.nil? %><br>
               <% count += 1 %>
             <% else %>
               <%= '...' %>
@@ -33,7 +33,7 @@
           <% count = 0 %>
           <% trip.countries.each do |country| %>
             <% if count < 3 %>
-              <%= country.name %><br>
+              <%= country.name unless country.nil? %><br>
               <% count += 1 %>
             <% else %>
               <%= '...' %>
