@@ -23,6 +23,7 @@ Features:
 * A navigation bar allows users to quickly access their profiles and dashboard
 * The users may change their passwords
 * Users are provided with an unique url http://application/<nickname> when registering an account
+* Use Bootstrap
 
 Note:
 
