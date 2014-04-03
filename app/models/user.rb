@@ -24,10 +24,13 @@ class User
 
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_presence_of :nickname
+  validates_uniqueness_of :nickname
   validates_presence_of :password, unless: :hash_exist
   validates_length_of :password, minimum: 8, maximum: 16, unless: :hash_exist
   validates_confirmation_of :password, unless: :hash_exist
   validate :check_password, unless: :hash_exist
+  validate :check_nickname
 
   def hash_password
     self.password_hash = BCrypt::Password.create(self.password)
@@ -38,6 +41,15 @@ class User
   def check_password
     if self.password.to_s[' ']
       errors.add(:password, "can't contain blank(s)")
+      return false
+    else
+      return true
+    end
+  end
+
+  def check_nickname
+    if(Rails.application.routes.recognize_path(self.nickname)[:action] != "showname" rescue nil)
+      errors.add(:nickname, " is already taken")
       return false
     else
       return true
