@@ -1,13 +1,34 @@
 == README
 
-Requirements
-| Name     | notes    |    
-|----------|----------|
-*Rails 
-*MongoDB w/ Mongoid | |
-*CarrierWave| For file uploading|
-*ImageMagick| For image manipulation, should be installed on the server|
-*Geocoder
+Requirements:
+* Rails 
+* MongoDB w/ Mongoid 
+* CarrierWave: For image uploading
+* ImageMagick: For image manipulation, should be installed on the server
+* Geocoder: extract geotag
+* Bootstrap
+
+Introduction:
+
+Travelogue is an online photo services where travelers can upload their photos taken and also the beautiful memories and unforgettable experiences during their wonderful trips. 
+
+Every photo with geo-tags are automatically labeled by the city and the country where it was originally taken. In the traveler's profile, you may see which countries and cities he/she has been to.
+
+The travelers may also share their trips with fellow travelers, or browse the images taken by other travelers during their journey.
+
+
+Features:
+
+* Users can upload their avatars, and the photos of course.
+* A navigation bar allows users to quickly access their profiles and dashboard
+* The users may change their passwords
+* Users are provided with an unique url http://application/<nickname> when registering an account
+
+Note:
+
+There is a working copy of Travelogue currently hosted on Heroku:
+http://still-scrubland-1344.herokuapp.com/
+
 
 HW5 -- sl3357 -- Shou-pon Lin
 
