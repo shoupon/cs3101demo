@@ -27,7 +27,7 @@ Features:
 
 Note:
 
-There is a working copy of Travelogue currently hosted on Heroku:
+There is a partially working copy of Travelogue currently hosted on Heroku:
 http://still-scrubland-1344.herokuapp.com/
 
 
