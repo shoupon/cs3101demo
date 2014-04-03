@@ -16,6 +16,9 @@ class User
   field :nickname, type: String
   field :role, type: Symbol, default: :traveler 
   # :traveler: typical user, :admin: administrator
+  
+  has_and_belongs_to_many :visit_cities, class_name: "City", inverse_of: :visitors
+  has_and_belongs_to_many :visit_countries, class_name: "Country", inverse_of: :visitors
 
   mount_uploader :avatar, AvatarUploader
 

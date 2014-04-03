@@ -4,6 +4,7 @@ class City
   embeds_one :location, as: :place
   belongs_to :country
   has_and_belongs_to_many :trips
+  has_and_belongs_to_many :visitors, class_name: "User", inverse_of: :visit_cities
   has_many :attractions
   has_many :photos
 
