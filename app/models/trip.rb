@@ -11,7 +11,7 @@ class Trip
   field :end, type: Date
 
   before_validation :find_cities
-  before_create :visit_cities_and_countries
+  before_save :visit_cities_and_countries
   def find_cities
     photos.each do |p|
       unless p.city.nil?
